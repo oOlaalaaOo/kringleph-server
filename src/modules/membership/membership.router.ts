@@ -23,7 +23,7 @@ membershipRouter
   );
 
 membershipRouter
-  .route("/plan/prefill")
+  .route("/plan-prefill")
   .get(membershipController.prefillMembershipPlans);
 
 membershipRouter
