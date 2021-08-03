@@ -65,6 +65,15 @@ const checkReferrerCodeIfExists = async (
   try {
     const data = req.body;
 
+    if (data.referrerCode === "leader") {
+      res.status(200).json({
+        message: "Successfully get membership.",
+        success: true,
+      });
+
+      return;
+    }
+
     const membership = await MembershipModel.findOne({
       referralCode: data.referrerCode,
     }).exec();
