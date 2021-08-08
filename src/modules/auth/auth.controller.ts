@@ -16,9 +16,9 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
     console.log("user", user);
 
     if (!user || user == null) {
-      res.status(403).json({
+      res.status(404).json({
         error: {
-          message: "User does not exists.",
+          message: "Username and password did not matched.",
           code: "USER_NOT_FOUND",
         },
         success: false,
@@ -27,7 +27,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
     if (user && user.password) {
       if (!bcryptService.verifyHashString(data.password, user.password)) {
-        res.status(403).json({
+        res.status(404).json({
           error: {
             message: "Username and password did not matched.",
             code: "INVALID_CREDENTIALS",

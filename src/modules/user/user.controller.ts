@@ -51,6 +51,8 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
         mobileNo: req.body.mobileNo,
         btcWallet: req.body.btcWallet,
         tbcWallet: req.body.tbcWallet,
+        gcashNo: req.body.gcashNo,
+        paymayaNo: req.body.paymayaNo,
       }
     );
 

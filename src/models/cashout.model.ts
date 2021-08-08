@@ -8,7 +8,8 @@ export interface ICashout extends Document {
   tbcWallet: string;
   currentBtcValue: number;
   transactionHash: string;
-  cashoutType: string; // referral, exchange
+  cashoutType: string; // referral, sell
+  status: string; // pending, denied, confirmed, paid
   createdDate: any;
   updatedDate: any;
 }
@@ -27,6 +28,7 @@ const cashoutSchema = new Schema(
     currentBtcValue: { type: Number, required: true },
     transactionHash: { type: String, required: true },
     cashoutType: { type: String, required: true },
+    status: { type: String, required: true },
     createdDate: { type: Date, required: true },
     updatedDate: { type: Date, required: true },
   },

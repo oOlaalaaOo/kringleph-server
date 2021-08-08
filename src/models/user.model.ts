@@ -8,6 +8,8 @@ export interface IUser extends Document {
   password: string;
   email?: string;
   mobileNo?: string;
+  gcashNo?: string;
+  paymayaNo?: string;
   btcWallet?: string;
   tbcWallet?: string;
   isActive: boolean;
@@ -26,6 +28,8 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     email: { type: String, default: null },
     mobileNo: { type: String, default: null },
+    gcashNo: { type: String, default: null },
+    paymayaNo: { type: String, default: null },
     btcWallet: { type: String, default: null },
     tbcWallet: { type: String, default: null },
     isActive: { type: Boolean, default: false },

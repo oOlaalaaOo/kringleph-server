@@ -65,14 +65,14 @@ const checkReferrerCodeIfExists = async (
   try {
     const data = req.body;
 
-    // if (data.referrerCode === "leader") {
-    //   res.status(200).json({
-    //     message: "Successfully get membership.",
-    //     success: true,
-    //   });
+    if (data.referrerCode === "leader") {
+      res.status(200).json({
+        message: "Successfully get membership.",
+        success: true,
+      });
 
-    //   return;
-    // }
+      return;
+    }
 
     const membership = await MembershipModel.findOne({
       referralCode: data.referrerCode,
@@ -348,7 +348,7 @@ const confirmMembership = async (
       return;
     }
 
-    const referralPoints = Number(referrerMembership.referralPoints) + 10;
+    const referralPoints = Number(referrerMembership.referralPoints) + (Number(updatedMembership.membershipPlanPrice) * 0.1);
 
     await MembershipModel.findOneAndUpdate(
       {
