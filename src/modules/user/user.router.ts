@@ -17,4 +17,6 @@ userRouter
   .route("/update")
   .post(authMiddleware.isAuthorized, userController.updateUser);
 
+userRouter.route("/username/check").post(userController.checkUsernameIfExists);
+
 export default userRouter;

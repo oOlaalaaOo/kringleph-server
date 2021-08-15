@@ -73,8 +73,47 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+const checkUsernameIfExists = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const data = req.body;
+
+    const oldUser = await UserModel.findOne({ username: data.username }).exec();
+
+    if (oldUser && oldUser !== null) {
+      res.status(200).json({
+        error: {
+          message: "Username already exists.",
+          code: "USERNAME_ALREADY_EXISTS",
+        },
+        success: false,
+      });
+
+      return;
+    }
+
+    res.status(200).json({
+      message: "Successfully get membership.",
+      success: true,
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: {
+        message: "Something went wrong on the server.",
+        code: "SERVER_ERROR",
+        error: err,
+      },
+      success: false,
+    });
+  }
+};
+
 export default {
   getUsers,
   getUser,
   updateUser,
+  checkUsernameIfExists,
 };
